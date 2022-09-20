@@ -41,13 +41,13 @@ function TerakhirDitonton() {
         <>
             <Header />
             {dataHistory.episodes ? (
-                <div className='px-10 pt-24 text-light pb-8 min-h-screen'>
-                    <div className="flex justify-between items-center">
+                <div className='pt-24 text-light pb-8 min-h-screen'>
+                    <div className="flex justify-between items-center px-6 lg:px-10">
                         <h1 className='pb-3 mb-8 pr-10 border-b-2 border-primary lg:text-2xl font-semibold flex items-center space-x-2'>
                             <span>Terakhir Ditonton</span>
                         </h1>
                     </div>
-                    <div className='flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-8'>
+                    <div className='flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-8 px-4 lg:px-10'>
                         {AnimeList.length == 0 ? (
                             <div className='flex flex-col mb-8'>
                                 <div className='text-gray-300 mb-3'>Data tidak tersedia, silahkan menonton terlebih dahulu.</div>
