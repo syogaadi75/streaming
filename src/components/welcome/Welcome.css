@@ -1,0 +1,12 @@
+.cover {
+    @apply lg:w-[500px] lg:h-screen w-[150px] h-[350px] grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300 ease-linear;
+    background-position: center;
+}
+
+.hide {
+    @apply opacity-0 h-0 text-dark;
+}
+
+.search {
+    @apply  opacity-100;
+}

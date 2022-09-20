@@ -1,56 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import Home from './pages/Home';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Watch from './pages/Watch';
+import DaftarAnime from './pages/DaftarAnime';
+import DetailAnime from './pages/DetailAnime';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { saveHistory } from './features/historySlice';
+import TerakhirDitonton from './pages/TerakhirDitonton';
+import NotFound from './pages/NotFound';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState(null)
+  const dispatch = useDispatch()
+  // const apiUrl = 'http://localhost:3000'
+  const apiUrl = 'https://yappstreamapi.herokuapp.com'
+
+  useEffect(() => {
+    axios.get('https://ipapi.co/json/').then(res => {
+      if (res.data.ip) {
+        axios.get(apiUrl + '/histories/' + res.data.ip).then(resHistory => {
+          if (!resHistory.data) {
+            axios.post(apiUrl + '/histories/', {
+              ip: res.data.ip
+            }).then(resPost => {
+              dispatch(saveHistory(resPost.data))
+            })
+          } else {
+            dispatch(saveHistory(resHistory.data))
+          }
+        })
+      }
+    })
+  }, [])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className='bg-dark text-light'>
+      <Router>
+        <div className="app">
+          <div className="app__body">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/watch" element={<Watch />} /> // Use redux
+              <Route path="/terakhir-ditonton" element={<TerakhirDitonton />} />
+              <Route path="/daftar-anime" element={<DaftarAnime />} />
+              <Route path="/detail-anime/:id" element={<DetailAnime />} /> // Use state
+              <Route path="*" element={<NotFound />} /> // Not FOund
+            </Routes>
+          </div>
+        </div>
+
+      </Router>
     </div>
   );
 }
