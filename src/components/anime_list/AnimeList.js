@@ -31,7 +31,17 @@ function AnimeList() {
 
     }
     const AnimeList = dataAnime.slice(pageVisited, pageVisited + usersPerPage).map((aniList) => (
-        <CardAnimeList key={aniList._id} film={aniList.film[0]} eid={aniList._id} coverImg={aniList.film[0].poster} title={aniList.film[0].title} no={aniList.no} />
+        <CardAnimeList
+            key={aniList._id}
+            film={aniList.film[0]}
+            eid={aniList._id}
+            coverImg={aniList.film[0].poster}
+            title={aniList.film[0].title}
+            no={
+                aniList._id == '632acffad4346cff27f04b1c'
+                    || aniList._id == '632ac243d4346cff27f04980'
+                    || aniList._id == '632ad71bd4346cff27f04be6' ? aniList.no + '-' + parseInt(aniList.no + 1) : aniList.no
+            } />
     ))
 
     return (

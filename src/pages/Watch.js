@@ -36,8 +36,19 @@ function Watch() {
             history('/')
         } else {
             axios.get(apiUrl + '/episode/' + episode).then(res => {
-                axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + 1}`).then(resNext => {
-                    axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -1}`).then(resPrev => {
+                var x = 0
+                if (
+                    res.data.episode._id == '632acffad4346cff27f04b1c'
+                    || res.data.episode._id == '632ac243d4346cff27f04980'
+                    || res.data.episode._id == '632ad71bd4346cff27f04be6'
+                ) {
+                    x = 2
+                } else {
+                    x = 1
+                }
+
+                axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + x}`).then(resNext => {
+                    axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -x}`).then(resPrev => {
                         setData(res.data)
                         setNextEpisode(resNext.data)
                         setPrevEpisode(resPrev.data)
@@ -48,10 +59,20 @@ function Watch() {
     }, [episode])
 
     useEffect(() => {
-        if (epsFromRedux != null) {
+        if (epsFromRedux != null && !firstLoad) {
             axios.get(apiUrl + '/episode/' + epsFromRedux).then(res => {
-                axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + 1}`).then(resNext => {
-                    axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -1}`).then(resPrev => {
+                var x = 0
+                if (
+                    res.data.episode._id == '632acffad4346cff27f04b1c'
+                    || res.data.episode._id == '632ac243d4346cff27f04980'
+                    || res.data.episode._id == '632ad71bd4346cff27f04be6'
+                ) {
+                    x = 2
+                } else {
+                    x = 1
+                }
+                axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + x}`).then(resNext => {
+                    axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -x}`).then(resPrev => {
                         setData(res.data)
                         setNextEpisode(resNext.data)
                         setPrevEpisode(resPrev.data)
@@ -88,7 +109,14 @@ function Watch() {
                     <div className='mt-14 lg:mt-8'>
                         <h1 className='mb-4 flex flex-col items-start lg:flex-row lg:items-center gap-4'>
                             <button className='button text-base' onClick={() => history('/')}> <HomeIcon className='w-5' /> <span>Kembali</span></button>
-                            <span className='text-base lg:text-lg'>{data.film.title} - Episode {data.episode.no}</span>
+                            <span className='text-base lg:text-lg'>
+                                {data.film.title} - <span>Episode </span>
+                                {
+                                    data.episode._id == '632acffad4346cff27f04b1c'
+                                        || data.episode._id == '632ac243d4346cff27f04980'
+                                        || data.episode._id == '632ad71bd4346cff27f04be6' ? data.episode.no + '-' + parseInt(data.episode.no + 1) : data.episode.no
+                                }
+                            </span>
                         </h1>
                         <div className='mb-6 text-xs lg:text-base'>
                             <span className='font-bold text-primary'>Penting!</span> Jika video tidak dapat diputar, silahkan gunakan <span className='font-bold text-primary'>CHROME</span> browser.

@@ -31,7 +31,7 @@ function DaftarAnime() {
 
     }
     const AnimeList = dataAnime.slice(pageVisited, pageVisited + usersPerPage).map((aniList) => (
-        <CardDaftarAnime key={aniList._id} film={aniList} eid={aniList._id} coverImg={aniList.poster} title={aniList.title} no={aniList.episode.length} />
+        <CardDaftarAnime key={aniList._id} film={aniList} eid={aniList._id} coverImg={aniList.poster} title={aniList.title} no={aniList.episode[aniList.episode.length - 1].no} />
     ))
 
     return (

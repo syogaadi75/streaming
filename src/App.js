@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { saveHistory } from './features/historySlice';
 import TerakhirDitonton from './pages/TerakhirDitonton';
 import NotFound from './pages/NotFound';
+import TambahEps from './pages/TambahEps';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(null)
@@ -47,6 +48,7 @@ function App() {
               <Route path="/terakhir-ditonton" element={<TerakhirDitonton />} />
               <Route path="/daftar-anime" element={<DaftarAnime />} />
               <Route path="/detail-anime/:id" element={<DetailAnime />} /> // Use state
+              <Route path="/tambah-eps" element={<TambahEps />} /> // Use state
               <Route path="*" element={<NotFound />} /> // Not FOund
             </Routes>
           </div>
