@@ -15,7 +15,6 @@ function DetailAnime() {
 
     useEffect(() => {
         axios.get(apiUrl + '/films/' + id).then(res => {
-            console.log(res.data)
             setFilm(res.data)
         })
     }, [])

@@ -10,7 +10,8 @@ import { useDispatch } from 'react-redux';
 import { saveHistory } from './features/historySlice';
 import TerakhirDitonton from './pages/TerakhirDitonton';
 import NotFound from './pages/NotFound';
-import TambahEps from './pages/TambahEps';
+import TambahEps from './pages/TambahEps'
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(null)
@@ -19,19 +20,20 @@ function App() {
   const apiUrl = 'https://yappstreamapi.herokuapp.com'
 
   useEffect(() => {
-    axios.get('https://ipapi.co/json/').then(res => {
-      if (res.data.ip) {
-        axios.get(apiUrl + '/histories/' + res.data.ip).then(resHistory => {
-          if (!resHistory.data) {
-            axios.post(apiUrl + '/histories/', {
-              ip: res.data.ip
-            }).then(resPost => {
-              dispatch(saveHistory(resPost.data))
-            })
-          } else {
-            dispatch(saveHistory(resHistory.data))
-          }
+    if (!localStorage.getItem('device')) {
+      localStorage.setItem('device', uuidv4())
+    }
+    var device = localStorage.getItem('device')
+
+    axios.get(apiUrl + '/histories/' + device).then(resHistory => {
+      if (!resHistory.data) {
+        axios.post(apiUrl + '/histories/', {
+          ip: device
+        }).then(resPost => {
+          dispatch(saveHistory(resPost.data))
         })
+      } else {
+        dispatch(saveHistory(resHistory.data))
       }
     })
   }, [])

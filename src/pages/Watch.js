@@ -36,6 +36,7 @@ function Watch() {
             history('/')
         } else {
             axios.get(apiUrl + '/episode/' + episode).then(res => {
+                setData(res.data)
                 var x = 0
                 if (
                     res.data.episode._id == '632acffad4346cff27f04b1c'
@@ -49,7 +50,7 @@ function Watch() {
 
                 axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + x}`).then(resNext => {
                     axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -x}`).then(resPrev => {
-                        setData(res.data)
+                        addHistory(res.data.episode._id)
                         setNextEpisode(resNext.data)
                         setPrevEpisode(resPrev.data)
                     })
@@ -61,6 +62,7 @@ function Watch() {
     useEffect(() => {
         if (epsFromRedux != null && !firstLoad) {
             axios.get(apiUrl + '/episode/' + epsFromRedux).then(res => {
+                setData(res.data)
                 var x = 0
                 if (
                     res.data.episode._id == '632acffad4346cff27f04b1c'
@@ -73,7 +75,6 @@ function Watch() {
                 }
                 axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + x}`).then(resNext => {
                     axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -x}`).then(resPrev => {
-                        setData(res.data)
                         setNextEpisode(resNext.data)
                         setPrevEpisode(resPrev.data)
                         if (res.data.episode._id) {

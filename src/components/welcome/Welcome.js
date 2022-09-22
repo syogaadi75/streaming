@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Welcome.css'
 import { Bars3Icon, MagnifyingGlassIcon, PlayIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
@@ -7,25 +7,32 @@ import axios from 'axios'
 function Welcome() {
     const history = useNavigate()
     const [dataPencarian, setDataPencarian] = useState([])
-    const title = useRef()
     const hasil = useRef()
+    const [title, setTitle] = useState('')
 
     const tonton = (eid) => {
         history('/detail-anime/' + eid)
     }
 
-    const cari = () => {
-        axios.get('https://yappstreamapi.herokuapp.com/films/search/' + title.current.value).then(res => {
-            setDataPencarian(res.data)
-            if (title.current.value) {
-                hasil.current.classList.remove('hide')
-                hasil.current.classList.add('hasil')
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (title != '') {
+                axios.get('https://yappstreamapi.herokuapp.com/films/search/' + title).then(res => {
+                    setDataPencarian(res.data)
+                    hasil.current.classList.remove('hide')
+                    hasil.current.classList.add('hasil')
+                })
             } else {
+                setDataPencarian([])
                 hasil.current.classList.remove('hasil')
                 hasil.current.classList.add('hide')
             }
-        })
-    }
+        }, 500);
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [title])
 
     return (
         <>
@@ -47,7 +54,7 @@ function Welcome() {
                                 <button className='button-disable text-xs lg:text-base' onClick={() => history('/terakhir-ditonton')}><PlayIcon className='w-5' /> <span>Terakhir Ditonton</span></button>
                             </div>
                             <div className='flex flex-col relative'>
-                                <input onKeyUp={() => cari()} ref={title} className='w-full p-3 outline-none bg-dark text-light border-2 border-primary rounded' type="text" placeholder='Cari Anime | Contoh: One Piece ' />
+                                <input onChange={(e) => setTitle(e.target.value)} className='w-full p-3 outline-none bg-dark text-light border-2 border-primary rounded' type="text" placeholder='Cari Anime | Contoh: One Piece ' />
                                 <div ref={hasil} className='flex flex-col max-h-[180px] gap-2 hide bg-dark w-full px-4 py-6 transition-all duration-300 ease-in-out overflow-y-auto shadow-2xl shadow-black/50 rounded scrollbar-hide'>
                                     <h1>Hasil Pencarian : </h1>
 
