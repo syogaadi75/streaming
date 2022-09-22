@@ -56,11 +56,11 @@ function Welcome() {
                             <div className='flex flex-col relative'>
                                 <input onChange={(e) => setTitle(e.target.value)} className='w-full p-3 outline-none bg-dark text-light border-2 border-primary rounded' type="text" placeholder='Cari Anime | Contoh: One Piece ' />
                                 <div ref={hasil} className='flex flex-col max-h-[180px] gap-2 hide bg-dark w-full px-4 py-6 transition-all duration-300 ease-in-out overflow-y-auto shadow-2xl shadow-black/50 rounded scrollbar-hide'>
-                                    <h1>Hasil Pencarian : </h1>
+                                    <h1 className='text-xs lg:text-base'>Hasil Pencarian : </h1>
 
                                     {dataPencarian.length > 0 ? (
                                         dataPencarian.map(pencarian => (
-                                            <button onClick={() => tonton(pencarian._id)} key={pencarian._id} className='button w-full font-semibold'>{pencarian.title}</button>
+                                            <button onClick={() => tonton(pencarian._id)} key={pencarian._id} className='button w-full font-semibold text-xs lg:text-base'>{pencarian.title}</button>
                                         ))
                                     ) : (<button className='button-disable w-full font-semibold'>Tidak ditemukan</button>)}
                                 </div>
