@@ -12,6 +12,7 @@ import TerakhirDitonton from './pages/TerakhirDitonton';
 import NotFound from './pages/NotFound';
 import TambahEps from './pages/TambahEps'
 import { v4 as uuidv4 } from 'uuid'
+import UpdateEps from './pages/UpdateEps';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(null)
@@ -51,6 +52,7 @@ function App() {
               <Route path="/daftar-anime" element={<DaftarAnime />} />
               <Route path="/detail-anime/:id" element={<DetailAnime />} /> // Use state
               <Route path="/tambah-eps" element={<TambahEps />} /> // Use state
+              <Route path="/update-eps" element={<UpdateEps />} /> // Use state
               <Route path="*" element={<NotFound />} /> // Not FOund
             </Routes>
           </div>
