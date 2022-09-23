@@ -50,9 +50,6 @@ function Watch() {
                         setNextEpisode(resNext.data)
                         setPrevEpisode(resPrev.data)
                         video.current.load()
-                        if (!firstLoad) {
-                            video.current.play()
-                        }
                         setLoading(false)
                     })
                 })
