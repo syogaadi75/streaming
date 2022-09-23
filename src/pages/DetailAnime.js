@@ -20,15 +20,14 @@ function DetailAnime() {
     }, [])
 
     const tonton = (eid) => {
-        dispatch(saveEpisodeId(eid))
-        history('/watch')
+        history('/watch/' + eid)
     }
 
 
     return (
         <>
             {film.film ? (
-                <div className='flex min-h-screen lg:h-screen bg-dark text-light py-24 px-8 lg:py-28 lg:px-14 gap-8 flex-col lg:flex-row'>
+                <div className='flex min-h-screen bg-dark text-light py-24 px-8 lg:py-28 lg:px-14 gap-8 flex-col lg:flex-row'>
                     <Header />
                     <div className='flex items-start gap-8 flex-col lg:flex-row'>
                         <div className='w-full flex justify-center'>
@@ -51,7 +50,7 @@ function DetailAnime() {
                     </div>
                     <div className='flex flex-col w-full'>
                         <h2 className='text-xl font-bold mb-4'>List Episode</h2>
-                        <div className='overflow-y-auto h-[300px] lg:h-full scrollbar-hide border-t-2 border-b-2 border-primary pt-2'>
+                        <div className='overflow-y-auto h-[300px] lg:h-[550px] xs:scrollbar-hide border-t-2 border-b-2 border-primary pt-2'>
                             {film.episodes?.map(episode => (
                                 <button onClick={() => tonton(episode._id)} key={episode.no} className='px-3 py-2 bg-dark text-gray-300 rounded shadow-2xl hover:bg-primary hover:text-dark hover:shadow-black/90 flex space-x-1 items-center  transition-all duration-300 ease-linear w-full mb-2 group text-sm'>
                                     {film.film?.title} <span className='text-primary mx-2 group-hover:text-dark'>-</span> Episode {episode.no}

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../components/watch/Watch.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon, Bars3Icon, HomeIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Header from '../components/Header'
 import { saveHistory } from '../features/historySlice'
@@ -14,10 +14,9 @@ function Watch() {
     const [data, setData] = useState([])
     const [firstLoad, setFirstLoad] = useState(true)
     const [loading, setLoading] = useState(false)
-    const [epsFromRedux, setEpsFromRedux] = useState(null)
     const [nextEpisode, setNextEpisode] = useState([])
     const [prevEpisode, setPrevEpisode] = useState([])
-    const episode = useSelector(state => state.episode.id)
+    const { id } = useParams()
     const history = useNavigate()
     const dispatch = useDispatch()
     const myHistory = useSelector(state => state.history.history)
@@ -31,11 +30,8 @@ function Watch() {
     }
 
     useEffect(() => {
-        setEpsFromRedux(episode)
-        if (episode == null) {
-            history('/')
-        } else {
-            axios.get(apiUrl + '/episode/' + episode).then(res => {
+        if (id) {
+            axios.get(apiUrl + '/episode/' + id).then(res => {
                 setData(res.data)
                 var x = 0
                 if (
@@ -53,35 +49,8 @@ function Watch() {
                         addHistory(res.data.episode._id)
                         setNextEpisode(resNext.data)
                         setPrevEpisode(resPrev.data)
-                    })
-                })
-            })
-        }
-    }, [episode])
-
-    useEffect(() => {
-        if (epsFromRedux != null && !firstLoad) {
-            axios.get(apiUrl + '/episode/' + epsFromRedux).then(res => {
-                setData(res.data)
-                var x = 0
-                if (
-                    res.data.episode._id == '632acffad4346cff27f04b1c'
-                    || res.data.episode._id == '632ac243d4346cff27f04980'
-                    || res.data.episode._id == '632ad71bd4346cff27f04be6'
-                ) {
-                    x = 2
-                } else {
-                    x = 1
-                }
-                axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + x}`).then(resNext => {
-                    axios.get(`${apiUrl}/episode/cariNo/${res.data.film._id}/${res.data.episode.no + -x}`).then(resPrev => {
-                        setNextEpisode(resNext.data)
-                        setPrevEpisode(resPrev.data)
-                        if (res.data.episode._id) {
-                            addHistory(res.data.episode._id)
-                        }
+                        video.current.load()
                         if (!firstLoad) {
-                            video.current.load()
                             video.current.play()
                         }
                         setLoading(false)
@@ -89,11 +58,11 @@ function Watch() {
                 })
             })
         }
-    }, [epsFromRedux])
+    }, [id])
 
     const changeEps = (eid) => {
         setFirstLoad(false)
-        setEpsFromRedux(eid)
+        history('/watch/' + eid)
         setLoading(true)
     }
 
@@ -106,7 +75,7 @@ function Watch() {
                     <div className='text-sm lg:text-xl'>Tunggu sebentar ya ges...</div>
                 </div>
             ) : (
-                <div className='text-light w-full lg:h-screen flex space-y-8 lg:space-x-8 p-8 lg:p-16 flex-col lg:flex-row min-h-screen'>
+                <div className='text-light w-full flex space-y-8 lg:space-x-8 p-8 lg:p-16 flex-col lg:flex-row min-h-screen'>
                     <div className='mt-14 lg:mt-8'>
                         <h1 className='mb-4 flex flex-col items-start lg:flex-row lg:items-center gap-4'>
                             <button className='button text-base' onClick={() => history('/')}> <HomeIcon className='w-5' /> <span>Kembali</span></button>
@@ -122,7 +91,7 @@ function Watch() {
                         <div className='mb-6 text-xs lg:text-base'>
                             <span className='font-bold text-primary'>Penting!</span> Jika video tidak dapat diputar, silahkan gunakan <span className='font-bold text-primary'>CHROME</span> browser.
                         </div>
-                        <video ref={video} className='w-[500px] lg:w-[720px]' controls>
+                        <video ref={video} className='w-[500px] lg:w-[620px]' controls>
                             <source src={data.episode.video} type="video/mp4" />
                         </video>
                         <div className='flex justify-between mt-4 text-xs lg:text-base mb-2'>

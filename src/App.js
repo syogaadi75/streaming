@@ -46,7 +46,7 @@ function App() {
           <div className="app__body">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/watch" element={<Watch />} /> // Use redux
+              <Route path="/watch/:id" element={<Watch />} /> // Use redux
               <Route path="/terakhir-ditonton" element={<TerakhirDitonton />} />
               <Route path="/daftar-anime" element={<DaftarAnime />} />
               <Route path="/detail-anime/:id" element={<DetailAnime />} /> // Use state

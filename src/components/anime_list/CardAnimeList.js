@@ -8,8 +8,8 @@ function CardAnimeList({ eid, coverImg, title, no, film }) {
     const dispatch = useDispatch()
 
     const tonton = () => {
-        dispatch(saveEpisodeId(eid))
-        history('/watch')
+        // dispatch(saveEpisodeId(eid))
+        history('/watch/' + eid)
     }
 
     return (
