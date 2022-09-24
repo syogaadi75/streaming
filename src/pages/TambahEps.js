@@ -34,7 +34,11 @@ function TambahEps() {
 
     const cariFilm = () => {
         axios.get('https://yappstreamapi.herokuapp.com/films/' + id.current.value).then(res => {
-            setNumber(res.data.episodes[0].no + 1)
+            if (res.data.episodes[0]) {
+                setNumber(res.data.episodes[0].no + 1)
+            } else {
+                setNumber(1)
+            }
         })
     }
 
@@ -43,7 +47,7 @@ function TambahEps() {
             <div className='w-full h-screen flex items-center justify-center flex-col gap-2 px-20'>
                 <input onChange={() => cariFilm()} className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={id} type="text" placeholder='ID Anime' />
                 <input className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={video} type="text" placeholder='Link Video' />
-                <input value={number} onChange={(e) => { }} className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={no} type="number" placeholder='Nomor' />
+                <input value={number} onChange={(e) => setNumber(e.target.value)} className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={no} type="number" placeholder='Nomor' />
                 <button type='submit' className='button w-[400px]'>Kirim</button>
             </div>
         </form>

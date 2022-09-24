@@ -8,6 +8,21 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* scroll */
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-[#171717];
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/90 rounded-full h-[60px] hover:bg-primary;
+  }
 
 div,
 input,

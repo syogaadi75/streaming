@@ -49,7 +49,7 @@ function AnimeList() {
             <div className="flex justify-between items-center">
                 <h1 className='pb-3 mb-8 pr-10 border-b-2 border-primary lg:text-2xl font-semibold'>Anime Terbaru Subtitle Indonesia</h1>
             </div>
-            <div className='flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-8'>
+            <div className='flex flex-wrap gap-4 justify-center lg:gap-8'>
                 {loading ? (
                     <div>
                         Memuat data...
