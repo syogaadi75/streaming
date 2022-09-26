@@ -3,7 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 
 const initialState = {
-    apiUrl: 'https://yappstreamapi.herokuapp.com',
+    apiUrl: 'https://streaming-api.vercel.app',
 };
 
 export const apiSlice = createSlice({
