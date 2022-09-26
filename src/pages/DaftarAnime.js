@@ -15,8 +15,7 @@ function DaftarAnime() {
     const [pageCount, setPageCount] = useState(0)
 
     useEffect(() => {
-        // axios.get('https://yappstreamapi.herokuapp.com/films').then(res => {
-        axios.get('http://localhost:3000/films').then(res => {
+        axios.get('https://yappstreamapi.herokuapp.com/films').then(res => {
             setDataAnime(res.data)
             setLoading(false)
         })

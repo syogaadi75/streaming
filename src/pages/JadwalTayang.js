@@ -17,7 +17,7 @@ function JadwalTayang() {
     const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
 
     useEffect(() => {
-        axios.get('http://localhost:3000/films/jadwal').then(res => {
+        axios.get('https://yappstreamapi.herokuapp.com/films/jadwal').then(res => {
             var x = 0
             res.data.film.forEach(el => {
                 let date = new Date(el.updated_at)
