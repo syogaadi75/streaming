@@ -5,6 +5,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import ReactPaginate from 'react-paginate'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function AnimeList() {
     const [dataAnime, setDataAnime] = useState([])
@@ -13,9 +14,10 @@ function AnimeList() {
     const [usersPerPage, setUsersPerPage] = useState(14)
     const [pageVisited, setPageVisited] = useState(pageNumber * usersPerPage)
     const [pageCount, setPageCount] = useState(0)
+    const apiUrl = useSelector(state => state.api.apiUrl)
 
     useEffect(() => {
-        axios.get('https://yappstreamapi.herokuapp.com/episode').then(res => {
+        axios.get(apiUrl + '/episode').then(res => {
             setDataAnime(res.data)
             setLoading(false)
         })

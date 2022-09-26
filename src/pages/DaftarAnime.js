@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import Header from '../components/Header'
 import CardDaftarAnime from '../components/daftar_anime/CardDaftarAnime'
+import { useSelector } from 'react-redux'
 
 function DaftarAnime() {
     const [dataAnime, setDataAnime] = useState([])
@@ -13,9 +14,10 @@ function DaftarAnime() {
     const [usersPerPage, setUsersPerPage] = useState(14)
     const [pageVisited, setPageVisited] = useState(pageNumber * usersPerPage)
     const [pageCount, setPageCount] = useState(0)
+    const apiUrl = useSelector(state => state.api.apiUrl)
 
     useEffect(() => {
-        axios.get('https://yappstreamapi.herokuapp.com/films').then(res => {
+        axios.get(apiUrl + '/films').then(res => {
             setDataAnime(res.data)
             setLoading(false)
         })

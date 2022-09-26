@@ -8,8 +8,7 @@ import Header from '../components/Header'
 import { saveHistory } from '../features/historySlice'
 
 function Watch() {
-    // const apiUrl = 'http://localhost:3000'
-    const apiUrl = 'https://yappstreamapi.herokuapp.com'
+    const apiUrl = useSelector(state => state.api.apiUrl)
     const video = useRef(null)
     const [data, setData] = useState([])
     const [firstLoad, setFirstLoad] = useState(true)

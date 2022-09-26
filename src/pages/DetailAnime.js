@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../components/Header'
 import { saveEpisodeId } from '../features/episodeSlice'
@@ -8,8 +8,7 @@ import { saveEpisodeId } from '../features/episodeSlice'
 function DetailAnime() {
     const { id } = useParams()
     const [film, setFilm] = useState([])
-    // const apiUrl = 'http://localhost:3000'
-    const apiUrl = 'https://yappstreamapi.herokuapp.com'
+    const apiUrl = useSelector(state => state.api.apiUrl)
     const dispatch = useDispatch()
     const history = useNavigate();
 

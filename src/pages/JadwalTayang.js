@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import CardDaftarAnime from '../components/daftar_anime/CardDaftarAnime'
 import Header from '../components/Header'
 
 function JadwalTayang() {
-
+    const apiUrl = useSelector(state => state.api.apiUrl)
     const [senins, setSenins] = useState([])
     const [selasas, setSelasas] = useState([])
     const [rabus, setRabus] = useState([])
@@ -17,7 +18,7 @@ function JadwalTayang() {
     const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
 
     useEffect(() => {
-        axios.get('https://yappstreamapi.herokuapp.com/films/jadwal').then(res => {
+        axios.get(apiUrl + '/films/jadwal').then(res => {
             var x = 0
             res.data.film.forEach(el => {
                 let date = new Date(el.updated_at)

@@ -6,7 +6,7 @@ import Watch from './pages/Watch';
 import DaftarAnime from './pages/DaftarAnime';
 import DetailAnime from './pages/DetailAnime';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveHistory } from './features/historySlice';
 import TerakhirDitonton from './pages/TerakhirDitonton';
 import NotFound from './pages/NotFound';
@@ -18,8 +18,7 @@ import JadwalTayang from './pages/JadwalTayang';
 function App() {
   const [currentPage, setCurrentPage] = useState(null)
   const dispatch = useDispatch()
-  // const apiUrl = 'http://localhost:3000'
-  const apiUrl = 'https://yappstreamapi.herokuapp.com'
+  const apiUrl = useSelector(state => state.api.apiUrl)
 
   useEffect(() => {
     if (!localStorage.getItem('device')) {

@@ -3,12 +3,14 @@ import './Welcome.css'
 import { Bars3Icon, MagnifyingGlassIcon, PlayIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function Welcome() {
     const history = useNavigate()
     const [dataPencarian, setDataPencarian] = useState([])
     const hasil = useRef()
     const [title, setTitle] = useState('')
+    const apiUrl = useSelector(state => state.api.apiUrl)
 
     const tonton = (eid) => {
         history('/detail-anime/' + eid)
@@ -17,7 +19,7 @@ function Welcome() {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (title != '') {
-                axios.get('https://yappstreamapi.herokuapp.com/films/search/' + title).then(res => {
+                axios.get(apiUrl + '/films/search/' + title).then(res => {
                     setDataPencarian(res.data)
                     hasil.current.classList.remove('hide')
                     hasil.current.classList.add('hasil')
