@@ -43,7 +43,7 @@ function Header() {
                                     <li className='group' onClick={() => history('/daftar-anime')}>
                                         <span className="cursor-pointer text-light py-2 flex group-hover:text-primary lg:font-semibold">Data Anime</span>
                                     </li>
-                                    <li className='group'>
+                                    <li className='group' onClick={() => history('/jadwal-tayang')}>
                                         <span className="cursor-pointer text-light py-2 flex group-hover:text-primary lg:font-semibold">Jadwal Tayang</span>
                                     </li>
                                 </ul>

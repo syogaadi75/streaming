@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound';
 import TambahEps from './pages/TambahEps'
 import { v4 as uuidv4 } from 'uuid'
 import UpdateEps from './pages/UpdateEps';
+import JadwalTayang from './pages/JadwalTayang';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(null)
@@ -50,6 +51,7 @@ function App() {
               <Route path="/watch/:id" element={<Watch />} /> // Use redux
               <Route path="/terakhir-ditonton" element={<TerakhirDitonton />} />
               <Route path="/daftar-anime" element={<DaftarAnime />} />
+              <Route path="/jadwal-tayang" element={<JadwalTayang />} />
               <Route path="/detail-anime/:id" element={<DetailAnime />} /> // Use state
               <Route path="/tambah-eps" element={<TambahEps />} /> // Use state
               <Route path="/update-eps" element={<UpdateEps />} /> // Use state

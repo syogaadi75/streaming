@@ -10,9 +10,11 @@ function CardDaftarAnime({ eid, coverImg, title, no, film }) {
 
     return (
         <div onClick={() => tonton()} className='w-[150px] h-[220px] relative group cursor-pointer overflow-hidden rounded-lg'>
-            <div className='absolute top-0 left-0 z-10  p-2 text-center card-hover-text'>
-                <h4 className='font-semibold text-sm text-primary'>{no} Eps</h4>
-            </div>
+            {no && (
+                <div className='absolute top-0 left-0 z-10  p-2 text-center card-hover-text'>
+                    <h4 className='font-semibold text-sm text-primary'>{no} Eps</h4>
+                </div>
+            )}
             <div className='absolute bottom-0 left-0 z-10 w-full p-2 text-center card-hover-text'>
                 <h4 className='font-semibold text-sm'>{title}</h4>
             </div>

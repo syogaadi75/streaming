@@ -15,7 +15,8 @@ function DaftarAnime() {
     const [pageCount, setPageCount] = useState(0)
 
     useEffect(() => {
-        axios.get('https://yappstreamapi.herokuapp.com/films').then(res => {
+        // axios.get('https://yappstreamapi.herokuapp.com/films').then(res => {
+        axios.get('http://localhost:3000/films').then(res => {
             setDataAnime(res.data)
             setLoading(false)
         })
@@ -31,7 +32,14 @@ function DaftarAnime() {
 
     }
     const AnimeList = dataAnime.slice(pageVisited, pageVisited + usersPerPage).map((aniList) => (
-        <CardDaftarAnime key={aniList._id} film={aniList} eid={aniList._id} coverImg={aniList.poster} title={aniList.title} no={aniList.episode[aniList.episode.length - 1]?.no} />
+        <CardDaftarAnime
+            key={aniList._id}
+            film={aniList}
+            eid={aniList._id}
+            coverImg={aniList.poster}
+            title={aniList.title}
+            no={aniList._id == '63255dbe9a82976b2983a6b7' ? aniList.episodeCount + 3 : aniList.episodeCount}
+        />
     ))
 
     return (
