@@ -1,3 +1,4 @@
+import { CheckIcon } from '@heroicons/react/24/outline'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -17,6 +18,11 @@ function CardAnimeList({ eid, coverImg, title, no, film }) {
             <div className='absolute top-0 left-0 z-10  p-2 text-center card-hover-text'>
                 <h4 className='font-semibold text-sm text-primary'>Eps {no}</h4>
             </div>
+            {film.tamat && (
+                <div className='absolute top-0 right-0 z-10  p-2 text-center card-hover-text'>
+                    <h4 className='font-semibold text-sm text-green-500 flex gap-1'> <CheckIcon className='w-5' strokeWidth={3} /> <span>End</span></h4>
+                </div>
+            )}
             <div className='absolute bottom-0 left-0 z-10 w-full p-2 text-center card-hover-text'>
                 <h4 className='font-semibold text-sm'>{title}</h4>
             </div>

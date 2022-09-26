@@ -121,7 +121,7 @@ function Watch() {
                         <div className='flex flex-row space-x-6 cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>
                             <img className='w-32 lg:w-44 h-32 lg:h-44' src={data.film.poster} alt="Cover" />
                             <p className='text-xs lg:text-sm leading-tight text-gray-300'>
-                                {data.film.synopsis}
+                                {`${data.film.synopsis.substring(0, 220)}...`}
                             </p>
                         </div>
                         <div className='flex flex-wrap gap-2 '>
