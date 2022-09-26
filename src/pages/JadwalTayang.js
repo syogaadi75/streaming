@@ -52,7 +52,7 @@ function JadwalTayang() {
                         <h1 className='pb-3 mb-8 pr-10 border-b-2 border-primary lg:text-2xl font-semibold'>Jadwal Tayang</h1>
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Senin</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {senins.length > 0 ? senins.map(senin => (
                             <CardDaftarAnime
                                 key={senin._id}
@@ -68,7 +68,7 @@ function JadwalTayang() {
                         )}
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Selasa</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {selasas.length > 0 ? selasas.map(selasa => (
                             <CardDaftarAnime
                                 key={selasa._id}
@@ -84,7 +84,7 @@ function JadwalTayang() {
                         )}
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Rabu</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {rabus.length > 0 ? rabus.map(rabu => (
                             <CardDaftarAnime
                                 key={rabu._id}
@@ -100,7 +100,7 @@ function JadwalTayang() {
                         )}
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Kamis</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {kamiss.length > 0 ? kamiss.map(kamis => (
                             <CardDaftarAnime
                                 key={kamis._id}
@@ -116,7 +116,7 @@ function JadwalTayang() {
                         )}
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Jumat</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {jumats.length > 0 ? jumats.map(jumat => (
                             <CardDaftarAnime
                                 key={jumat._id}
@@ -132,7 +132,7 @@ function JadwalTayang() {
                         )}
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Sabtu</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {sabtus.length > 0 ? sabtus.map(sabtu => (
                             <CardDaftarAnime
                                 key={sabtu._id}
@@ -148,7 +148,7 @@ function JadwalTayang() {
                         )}
                     </div>
                     <h1 className='px-6 lg:px-10 font-semibold text-lg text-primary mb-4'>Minggu</h1>
-                    <div className='flex flex-wrap gap-4 lg:gap-8 px-6 lg:px-10 mb-6'>
+                    <div className='flex flex-wrap gap-4 lg:gap-8 px-4 lg:px-10 mb-6'>
                         {minggus.length > 0 ? minggus.map(minggu => (
                             <CardDaftarAnime
                                 key={minggu._id}
