@@ -1,0 +1,8 @@
+{
+    "appId": "io.ionic.animey",
+    "appName": "animey",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "build",
+    "cordova": {}
+  }

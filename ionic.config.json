@@ -1,0 +1,7 @@
+{
+    "name": "animey",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }

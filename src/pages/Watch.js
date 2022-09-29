@@ -57,6 +57,7 @@ function Watch() {
     }, [id])
 
     const changeEps = (eid) => {
+        video.current.pause()
         setFirstLoad(false)
         history('/watch/' + eid)
         setLoading(true)

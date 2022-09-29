@@ -1,4 +1,4 @@
-package com.animey.vercel.app;
+package io.ionic.animey;
 
 import com.getcapacitor.BridgeActivity;
 
