@@ -91,7 +91,7 @@ function JadwalTayang() {
                                 film={rabu}
                                 eid={rabu._id}
                                 coverImg={rabu.poster}
-                                title={rabu.title.substring(0, 45)}
+                                title={rabu.title.substring(0, 44)}
                             />
                         )) : (
                             <div>
