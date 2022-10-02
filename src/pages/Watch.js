@@ -77,7 +77,7 @@ function Watch() {
                         <h1 className='mb-4 flex flex-col items-start lg:flex-row lg:items-center gap-4'>
                             <button className='button text-base' onClick={() => history('/')}> <HomeIcon className='w-5' /> <span>Kembali</span></button>
                             <span className='text-base lg:text-lg'>
-                                {data.film.title} - <span>Episode </span>
+                                {data.film.title.substring(0, 40)} - <span>Episode </span>
                                 {
                                     data.episode._id == '632acffad4346cff27f04b1c'
                                         || data.episode._id == '632ac243d4346cff27f04980'
@@ -118,7 +118,7 @@ function Watch() {
                         </div>
                     </div>
                     <div className="mt-14 lg:mt-8 flex w-full lg:w-1/3 flex-col space-y-3">
-                        <h1 className='text-lg lg:text-2xl font-bold text-primary cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>{data.film.title}</h1>
+                        <h1 className='text-lg lg:text-xl font-bold text-primary cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>{data.film.title}</h1>
                         <div className='flex flex-row space-x-6 cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>
                             <img className='w-32 lg:w-44 h-32 lg:h-44' src={data.film.poster} alt="Cover" />
                             <p className='text-xs lg:text-sm leading-tight text-gray-300'>

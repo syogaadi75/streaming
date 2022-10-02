@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 function TambahEps() {
     const video = useRef()
+    const date = useRef()
     const no = useRef()
     const id = useRef()
     const [number, setNumber] = useState(0)
@@ -22,8 +23,11 @@ function TambahEps() {
         } else {
             data = {
                 video: video.current.value,
-                no: no.current.value
+                no: no.current.value,
             }
+        }
+        if (date.current.value != '') {
+            data.date = date.current.value
         }
         axios.post('https://yappstreamapi.herokuapp.com/episode/' + id.current.value, data).then(() => {
             setNumber(number + 1)
@@ -48,6 +52,7 @@ function TambahEps() {
                 <input onChange={() => cariFilm()} className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={id} type="text" placeholder='ID Anime' />
                 <input className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={video} type="text" placeholder='Link Video' />
                 <input value={number} onChange={(e) => setNumber(e.target.value)} className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={no} type="number" placeholder='Nomor' />
+                <input className='w-full p-3 bg-dark text-primary outline-none border border-primary' ref={date} type="text" placeholder='Date' />
                 <button type='submit' className='button w-[400px]'>Kirim</button>
             </div>
         </form>

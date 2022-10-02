@@ -34,7 +34,7 @@ function TerakhirDitonton() {
 
     }
     const AnimeList = sortAnimeList.slice(pageVisited, pageVisited + usersPerPage).map((aniList) => (
-        <CardAnimeList key={aniList._id} film={aniList.film} eid={aniList._id} coverImg={aniList.film.poster} title={aniList.film.title} no={aniList.episode.no} />
+        <CardAnimeList key={aniList._id} film={aniList.film} eid={aniList._id} coverImg={aniList.film.poster} title={aniList.film.title.substring(0, 45)} no={aniList.episode.no} />
     ))
 
     return (

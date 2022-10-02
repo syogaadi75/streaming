@@ -59,7 +59,7 @@ function JadwalTayang() {
                                 film={senin}
                                 eid={senin._id}
                                 coverImg={senin.poster}
-                                title={senin.title}
+                                title={senin.title.substring(0, 45)}
                             />
                         )) : (
                             <div>
@@ -75,7 +75,7 @@ function JadwalTayang() {
                                 film={selasa}
                                 eid={selasa._id}
                                 coverImg={selasa.poster}
-                                title={selasa.title}
+                                title={selasa.title.substring(0, 45)}
                             />
                         )) : (
                             <div>
@@ -91,7 +91,7 @@ function JadwalTayang() {
                                 film={rabu}
                                 eid={rabu._id}
                                 coverImg={rabu.poster}
-                                title={rabu.title}
+                                title={rabu.title.substring(0, 45)}
                             />
                         )) : (
                             <div>
@@ -107,7 +107,7 @@ function JadwalTayang() {
                                 film={kamis}
                                 eid={kamis._id}
                                 coverImg={kamis.poster}
-                                title={kamis.title}
+                                title={kamis.title.substring(0, 45)}
                             />
                         )) : (
                             <div>
@@ -123,7 +123,7 @@ function JadwalTayang() {
                                 film={jumat}
                                 eid={jumat._id}
                                 coverImg={jumat.poster}
-                                title={jumat.title}
+                                title={jumat.title.substring(0, 45)}
                             />
                         )) : (
                             <div>
@@ -139,7 +139,7 @@ function JadwalTayang() {
                                 film={sabtu}
                                 eid={sabtu._id}
                                 coverImg={sabtu.poster}
-                                title={sabtu.title}
+                                title={sabtu.title.substring(0, 45)}
                             />
                         )) : (
                             <div>
@@ -155,7 +155,7 @@ function JadwalTayang() {
                                 film={minggu}
                                 eid={minggu._id}
                                 coverImg={minggu.poster}
-                                title={minggu.title}
+                                title={minggu.title.substring(0, 45)}
                             />
                         )) : (
                             <div>

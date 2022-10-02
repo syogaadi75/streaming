@@ -14,6 +14,7 @@ import TambahEps from './pages/TambahEps'
 import { v4 as uuidv4 } from 'uuid'
 import UpdateEps from './pages/UpdateEps';
 import JadwalTayang from './pages/JadwalTayang';
+import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(null)
@@ -21,6 +22,9 @@ function App() {
   const apiUrl = useSelector(state => state.api.apiUrl)
 
   useEffect(() => {
+    AndroidFullScreen.isImmersiveModeSupported()
+      .then(() => AndroidFullScreen.immersiveMode())
+      .catch(console.warn);
     if (!localStorage.getItem('device')) {
       localStorage.setItem('device', uuidv4())
     }

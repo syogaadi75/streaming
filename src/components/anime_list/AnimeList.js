@@ -38,7 +38,7 @@ function AnimeList() {
             film={aniList.film[0]}
             eid={aniList._id}
             coverImg={aniList.film[0].poster}
-            title={aniList.film[0].title}
+            title={aniList.film[0].title.substring(0, 45)}
             no={
                 aniList._id == '632acffad4346cff27f04b1c'
                     || aniList._id == '632ac243d4346cff27f04980'

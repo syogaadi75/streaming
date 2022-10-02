@@ -38,8 +38,8 @@ function DaftarAnime() {
             film={aniList}
             eid={aniList._id}
             coverImg={aniList.poster}
-            title={aniList.title}
-            no={aniList._id == '63255dbe9a82976b2983a6b7' ? aniList.episodeCount + 3 : aniList.episodeCount}
+            title={aniList.title.substring(0, 45)}
+            no={aniList._id == '63255dbe9a82976b2983a6b7' ? aniList.episodeCount + 2 : aniList.episodeCount}
         />
     ))
 
