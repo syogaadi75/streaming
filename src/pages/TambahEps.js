@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 function TambahEps() {
     const video = useRef()
@@ -7,6 +8,7 @@ function TambahEps() {
     const no = useRef()
     const id = useRef()
     const [number, setNumber] = useState(0)
+    const apiUrl = useSelector(state => state.api.apiUrl)
 
     useEffect(() => {
         video.current.focus()
@@ -18,18 +20,17 @@ function TambahEps() {
         var data = {}
         if (no.current.value == '') {
             data = {
-                video: video.current.value
+                video: video.current.value,
+                date: date.current.value
             }
         } else {
             data = {
                 video: video.current.value,
                 no: no.current.value,
+                date: date.current.value
             }
         }
-        if (date.current.value != '') {
-            data.date = date.current.value
-        }
-        axios.post('https://yappstreamapi.herokuapp.com/episode/' + id.current.value, data).then(() => {
+        axios.post(apiUrl + '/episode/' + id.current.value, data).then(() => {
             setNumber(number + 1)
             video.current.value = ''
             video.current.focus()
@@ -37,7 +38,7 @@ function TambahEps() {
     }
 
     const cariFilm = () => {
-        axios.get('https://yappstreamapi.herokuapp.com/films/' + id.current.value).then(res => {
+        axios.get(apiUrl + '/films/' + id.current.value).then(res => {
             if (res.data.episodes[0]) {
                 setNumber(res.data.episodes[0].no + 1)
             } else {
