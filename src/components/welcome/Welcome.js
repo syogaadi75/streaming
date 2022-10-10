@@ -49,7 +49,7 @@ function Welcome() {
                             <XMarkIcon className='w-8 lg:w-10' color='#facc15' />
                             <h1 className='font-bold'>Streaming</h1>
                         </div>
-                        <div className='mb-8 text-xs lg:text-sm'>Nonton anime subtitle Indonesia secara gratis & bebas iklan.</div>
+                        <div className='mb-8 text-xs lg:text-sm'>Nonton anime subtitle Indonesia secara mudah & gratis.</div>
                         <div className='text-gray-200 text-sm lg:text-base'>
                             <div className='mb-4 flex gap-4'>
                                 <button className='button text-xs lg:text-base' onClick={() => history('/daftar-anime')}><Bars3Icon className='w-5' /> <span>Data Anime</span></button>
