@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import CardDaftarAnime from '../components/daftar_anime/CardDaftarAnime'
 import Header from '../components/Header'
+import Loading from './Loading'
 
 function JadwalTayang() {
     const apiUrl = useSelector(state => state.api.apiUrl)
@@ -18,9 +19,10 @@ function JadwalTayang() {
     const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
 
     useEffect(() => {
-        axios.get(apiUrl + '/films/jadwal').then(res => {
+        const fetchData = async () => {
+            const getJadwal = await axios.get(apiUrl + '/films/jadwal')
             var x = 0
-            res.data.film.forEach(el => {
+            getJadwal.data.film.forEach(el => {
                 let date = new Date(el.updated_at)
                 date.getDay() == 0 && minggus.push(el)
                 date.getDay() == 1 && senins.push(el)
@@ -30,11 +32,13 @@ function JadwalTayang() {
                 date.getDay() == 5 && jumats.push(el)
                 date.getDay() == 6 && sabtus.push(el)
                 x++
-                if (res.data.film.length == x) {
+                if (getJadwal.data.film.length == x) {
                     setLoading(false)
                 }
             });
-        })
+        }
+
+        fetchData()
     }, [])
 
 
@@ -43,8 +47,7 @@ function JadwalTayang() {
             <Header />
             {loading ? (
                 <div className='w-full h-screen flex justify-center items-center text-lg text-light flex-col gap-2'>
-                    <div className='text-xl lg:text-3xl font-bold text-primary'>Memuat Data</div>
-                    <div className='text-sm lg:text-xl'>Tunggu sebentar ya ges...</div>
+                    <Loading />
                 </div>
             ) : (
                 <div className='text-light pb-8 pt-24 min-h-screen'>
@@ -59,7 +62,7 @@ function JadwalTayang() {
                                 film={senin}
                                 eid={senin._id}
                                 coverImg={senin.poster}
-                                title={senin.title.substring(0, 45)}
+                                title={senin.title.substring(0, 40)}
                             />
                         )) : (
                             <div>
@@ -75,7 +78,7 @@ function JadwalTayang() {
                                 film={selasa}
                                 eid={selasa._id}
                                 coverImg={selasa.poster}
-                                title={selasa.title.substring(0, 45)}
+                                title={selasa.title.substring(0, 40)}
                             />
                         )) : (
                             <div>
@@ -91,7 +94,7 @@ function JadwalTayang() {
                                 film={rabu}
                                 eid={rabu._id}
                                 coverImg={rabu.poster}
-                                title={rabu.title.substring(0, 44)}
+                                title={rabu.title.substring(0, 40)}
                             />
                         )) : (
                             <div>
@@ -107,7 +110,7 @@ function JadwalTayang() {
                                 film={kamis}
                                 eid={kamis._id}
                                 coverImg={kamis.poster}
-                                title={kamis.title.substring(0, 45)}
+                                title={kamis.title.substring(0, 40)}
                             />
                         )) : (
                             <div>
@@ -123,7 +126,7 @@ function JadwalTayang() {
                                 film={jumat}
                                 eid={jumat._id}
                                 coverImg={jumat.poster}
-                                title={jumat.title.substring(0, 45)}
+                                title={jumat.title.substring(0, 40)}
                             />
                         )) : (
                             <div>
@@ -139,7 +142,7 @@ function JadwalTayang() {
                                 film={sabtu}
                                 eid={sabtu._id}
                                 coverImg={sabtu.poster}
-                                title={sabtu.title.substring(0, 45)}
+                                title={sabtu.title.substring(0, 40)}
                             />
                         )) : (
                             <div>
@@ -155,7 +158,7 @@ function JadwalTayang() {
                                 film={minggu}
                                 eid={minggu._id}
                                 coverImg={minggu.poster}
-                                title={minggu.title.substring(0, 45)}
+                                title={minggu.title.substring(0, 40)}
                             />
                         )) : (
                             <div>

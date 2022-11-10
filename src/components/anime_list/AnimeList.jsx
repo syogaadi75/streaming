@@ -6,6 +6,7 @@ import ReactPaginate from 'react-paginate'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import Loading from '../../pages/Loading'
 
 function AnimeList() {
     const [dataAnime, setDataAnime] = useState([])
@@ -17,10 +18,13 @@ function AnimeList() {
     const apiUrl = useSelector(state => state.api.apiUrl)
 
     useEffect(() => {
-        axios.get(apiUrl + '/episode').then(res => {
-            setDataAnime(res.data)
+        const fetchData = async () => {
+            const getEpisode = await axios.get(apiUrl + '/episode')
+            await setDataAnime(getEpisode.data)
             setLoading(false)
-        })
+        }
+
+        fetchData()
     }, [])
 
     useEffect(() => {
@@ -39,11 +43,7 @@ function AnimeList() {
             eid={aniList._id}
             coverImg={aniList.film[0].poster}
             title={aniList.film[0].title.substring(0, 45)}
-            no={
-                aniList._id == '632acffad4346cff27f04b1c'
-                    || aniList._id == '632ac243d4346cff27f04980'
-                    || aniList._id == '632ad71bd4346cff27f04be6' ? aniList.no + '-' + parseInt(aniList.no + 1) : aniList.no
-            } />
+            no={aniList.no} />
     ))
 
     return (
@@ -53,9 +53,7 @@ function AnimeList() {
             </div>
             <div className='flex flex-wrap gap-4 justify-center lg:gap-8'>
                 {loading ? (
-                    <div>
-                        Memuat data...
-                    </div>
+                    <Loading />
                 ) : AnimeList}
                 <ReactPaginate
                     previousLabel={<button className='pagination-button'> <ArrowLeftIcon className='w-4' /> <span>Prev</span></button>}

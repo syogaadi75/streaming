@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Header from '../components/Header'
 import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
 
 function TerakhirDitonton() {
     const dataHistory = useSelector(state => state.history.history)
@@ -67,8 +68,7 @@ function TerakhirDitonton() {
                 </div>
             ) : (
                 <div className='w-full h-screen flex justify-center items-center text-lg text-light flex-col gap-2'>
-                    <div className='text-xl lg:text-3xl font-bold text-primary'>Memuat Data</div>
-                    <div className='text-sm lg:text-xl'>Tunggu sebentar ya ges...</div>
+                    <Loading />
                 </div>
             )}
 

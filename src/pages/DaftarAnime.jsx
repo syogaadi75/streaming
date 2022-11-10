@@ -6,6 +6,7 @@ import axios from 'axios'
 import Header from '../components/Header'
 import CardDaftarAnime from '../components/daftar_anime/CardDaftarAnime'
 import { useSelector } from 'react-redux'
+import Loading from './Loading'
 
 function DaftarAnime() {
     const [dataAnime, setDataAnime] = useState([])
@@ -17,10 +18,12 @@ function DaftarAnime() {
     const apiUrl = useSelector(state => state.api.apiUrl)
 
     useEffect(() => {
-        axios.get(apiUrl + '/films').then(res => {
-            setDataAnime(res.data)
+        const fetchData = async () => {
+            const getFilms = await axios.get(apiUrl + '/films')
+            setDataAnime(getFilms.data)
             setLoading(false)
-        })
+        }
+        fetchData()
     }, [])
 
     useEffect(() => {
@@ -66,8 +69,7 @@ function DaftarAnime() {
                 </div>
             ) : (
                 <div className='w-full h-screen flex justify-center items-center text-lg text-light flex-col gap-2'>
-                    <div className='text-xl lg:text-3xl font-bold text-primary'>Memuat Data</div>
-                    <div className='text-sm lg:text-xl'>Tunggu sebentar ya ges...</div>
+                    <Loading />
                 </div>
             )}
         </>

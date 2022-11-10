@@ -24,7 +24,7 @@ function CardDaftarAnime({ eid, coverImg, title, no, film }) {
             <div className='absolute bottom-0 left-0 z-10 w-full p-2 text-center card-hover-text'>
                 <h4 className='font-semibold text-sm'>{title}</h4>
             </div>
-            <img className='card-hover-img bg-cover w-[150px] h-[220px]' src={coverImg} alt="Cover Img" />
+            <img className='card-hover-img bg-cover w-[150px] h-[220px]' src={coverImg} alt="Cover Img" loading='lazy' />
         </div>
     )
 }
