@@ -102,24 +102,12 @@ function Welcome() {
                         </div>
                         <div className='text-gray-200 text-sm lg:text-base'>
                             <div
-                                data-aos-once="false"
-                                data-aos="fade-up"
-                                data-aos-offset="200"
-                                data-aos-delay="1000"
-                                data-aos-duration="800"
-                                data-aos-easing="ease-in-out"
                                 className='mb-4 flex gap-4'
                             >
                                 <button className='button text-xs lg:text-base' onClick={() => history('/daftar-anime')}><Bars3Icon className='w-5' /> <span>Data Anime</span></button>
                                 <button className='button-disable text-xs lg:text-base' onClick={() => history('/terakhir-ditonton')}><PlayIcon className='w-5' /> <span>Terakhir Ditonton</span></button>
                             </div>
                             <div
-                                data-aos-once="false"
-                                data-aos="fade-up"
-                                data-aos-offset="200"
-                                data-aos-delay="1000"
-                                data-aos-duration="800"
-                                data-aos-easing="ease-in-out"
                                 className='flex flex-col relative'
                             >
                                 <input onChange={(e) => setTitle(e.target.value)} className='w-full p-3 outline-none bg-dark text-light border-2 border-primary rounded' type="text" placeholder='Cari Anime | Contoh: One Piece ' />
