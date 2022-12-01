@@ -150,12 +150,6 @@ function Watch() {
                         </div>
                     </div>
                     <div
-                        data-aos-once="false"
-                        data-aos="fade-down"
-                        data-aos-offset="200"
-                        data-aos-delay="300"
-                        data-aos-duration="800"
-                        data-aos-easing="ease-in-out"
                         className="mt-14 lg:mt-8 flex w-full lg:w-1/3 flex-col space-y-3"
                     >
                         <h1 className='text-lg lg:text-xl font-bold text-primary cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>{data.film.title}</h1>
