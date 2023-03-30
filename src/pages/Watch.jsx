@@ -7,6 +7,8 @@ import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon, Bars3Icon, HomeIcon, XMar
 import Header from '../components/Header'
 import { saveHistory } from '../features/historySlice'
 import Loading from './Loading'
+import { Player, FullscreenToggle, ControlBar, Shortcut, BigPlayButton, ProgressControl, CurrentTimeDisplay, DurationDisplay, TimeDivider } from 'video-react';
+import 'video-react/dist/video-react.css'
 
 function Watch() {
     const apiUrl = useSelector(state => state.api.apiUrl)
@@ -107,7 +109,7 @@ function Watch() {
                         </h1>
                         <div
                             data-aos-once="false"
-                            data-aos="fade-down"
+                            data-aos="fade-right"
                             data-aos-offset="200"
                             data-aos-delay="0"
                             data-aos-duration="800"
@@ -117,9 +119,23 @@ function Watch() {
                             <span className='font-bold text-primary'>Penting!</span> Jika video tidak dapat diputar, silahkan gunakan <span className='font-bold text-primary'>CHROME</span> browser.
                         </div>
                         <div className='flex justify-center'>
-                            <video ref={video} className='w-[500px] lg:w-[620px]' controls>
+                            <Player
+                                ref={video}
+                            >
+                                <source src={data.episode.video} />
+                                <BigPlayButton className='big-play-button-hide' />
+                                <ControlBar>
+                                    {/* <PlayToggle /> */}
+                                    <CurrentTimeDisplay key="ctd" />
+                                    <DurationDisplay key="dd" />
+                                    <ProgressControl key="pc" />
+                                    <TimeDivider key="td" />
+                                    <FullscreenToggle key="fs" />
+                                </ControlBar>
+                            </Player>
+                            {/* <video ref={video} className='w-[500px] lg:w-[620px]' controls>
                                 <source src={data.episode.video} type="video/mp4" />
-                            </video>
+                            </video> */}
                         </div>
                         <div className='flex justify-between mt-4 text-xs lg:text-base mb-2'>
                             <div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Aos from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import './Welcome.css'
-import { Bars3Icon, MagnifyingGlassIcon, PlayIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, PlayIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
@@ -91,7 +90,7 @@ function Welcome() {
                         </div>
                         <div
                             data-aos-once="false"
-                            data-aos="fade-down"
+                            data-aos="fade-right"
                             data-aos-offset="200"
                             data-aos-delay="1000"
                             data-aos-duration="800"
@@ -125,7 +124,7 @@ function Welcome() {
                 </div>
                 <div
                     className='flex overflow-hidden' data-aos-once="false"
-                    data-aos="fade-up"
+                    data-aos="fade-right"
                     data-aos-offset="200"
                     data-aos-delay="500"
                     data-aos-duration="1000"
