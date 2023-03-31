@@ -1,0 +1,29 @@
+button {
+    outline: none !important;
+}
+
+video {
+    outline: none !important;
+}
+
+video:focus-visible {
+    outline: none !important;
+}
+
+.video-js .vjs-control-bar {
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: rgba(43, 51, 63, 0.7);
+}
+
+.video-js button {
+    color: #FACC15 !important;
+}
+
+.vjs-progress-control {
+    color: #FACC15 !important;
+}
+
+.vjs-progress-control .vjs-play-progress {
+    background-color: #FACC15 !important;
+}

@@ -12,7 +12,7 @@ function DaftarAnime() {
     const [dataAnime, setDataAnime] = useState([])
     const [loading, setLoading] = useState(true)
     const [pageNumber, setPageNumber] = useState(0)
-    const [usersPerPage, setUsersPerPage] = useState(14)
+    const [usersPerPage, setUsersPerPage] = useState(28)
     const [pageVisited, setPageVisited] = useState(pageNumber * usersPerPage)
     const [pageCount, setPageCount] = useState(0)
     const apiUrl = useSelector(state => state.api.apiUrl)
@@ -47,20 +47,35 @@ function DaftarAnime() {
     ))
 
     return (
-        <>
+        <div className='jost'>
             <Header />
             {!loading ? (
                 <div className='text-light pb-8 pt-24 min-h-screen'>
-                    <div className="flex justify-between items-center px-6 lg:px-10">
-                        <h1 className='pb-3 mb-8 pr-10 border-b-2 border-primary lg:text-2xl font-semibold'>Daftar Anime</h1>
+                    <div className="flex justify-center items-center px-6 lg:px-10">
+                        <h1 className='pb-1 mb-2 px-5 border-b-2 border-primary lg:text-2xl font-semibold text-center'>Daftar Anime</h1>
                     </div>
                     <div className='flex flex-wrap gap-4 justify-center lg:justify-start lg:gap-8 px-4 lg:px-10'>
-                        {AnimeList}
                         <ReactPaginate
-                            previousLabel={<button className='pagination-button'> <ArrowLeftIcon className='w-4' /> <span>Prev</span></button>}
-                            nextLabel={<button className='pagination-button'> <span>Next</span> <ArrowRightIcon className='w-4' /></button>}
+                            previousLabel={<button className='pagination-button'><ArrowLeftIcon className='w-4' /></button>}
+                            nextLabel={<button className='pagination-button'><ArrowRightIcon className='w-4' /></button>}
                             pageCount={pageCount}
                             onPageChange={changePage}
+                            breakLabel="..."
+                            pageRangeDisplayed={3}
+                            marginPagesDisplayed={1}
+                            containerClassName="paginationContainer"
+                            disabledClassName="paginationDisable"
+                            activeClassName="paginationActive"
+                        />
+                        {AnimeList}
+                        <ReactPaginate
+                            previousLabel={<button className='pagination-button'><ArrowLeftIcon className='w-4' /></button>}
+                            nextLabel={<button className='pagination-button'><ArrowRightIcon className='w-4' /></button>}
+                            pageCount={pageCount}
+                            onPageChange={changePage}
+                            breakLabel="..."
+                            pageRangeDisplayed={3}
+                            marginPagesDisplayed={1}
                             containerClassName="paginationContainer"
                             disabledClassName="paginationDisable"
                             activeClassName="paginationActive"
@@ -72,7 +87,7 @@ function DaftarAnime() {
                     <Loading />
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

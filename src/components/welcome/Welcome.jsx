@@ -5,12 +5,15 @@ import { Bars3Icon, PlayIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import Loading from '../../pages/Loading';
+import LoadingSmall from '../../pages/LoadingSmall';
 
 function Welcome() {
     const history = useNavigate()
     const [dataPencarian, setDataPencarian] = useState([])
     const hasil = useRef()
     const [title, setTitle] = useState('')
+    const [loadingSearch, setLoadingSearch] = useState(false)
     const apiUrl = useSelector(state => state.api.apiUrl)
 
     const tonton = (eid) => {
@@ -20,10 +23,12 @@ function Welcome() {
     useEffect(() => {
         const timer = setTimeout(async () => {
             if (title != '') {
-                const searchResult = await axios.get(apiUrl + '/films/search/' + title)
-                setDataPencarian(searchResult.data)
                 hasil.current.classList.remove('hide')
                 hasil.current.classList.add('hasil')
+                setLoadingSearch(true);
+                const searchResult = await axios.get(apiUrl + '/films/search/' + title)
+                setDataPencarian(searchResult.data)
+                setLoadingSearch(false);
             } else {
                 setDataPencarian([])
                 hasil.current.classList.remove('hasil')
@@ -111,11 +116,17 @@ function Welcome() {
                             >
                                 <input onChange={(e) => setTitle(e.target.value)} className='w-full p-3 outline-none bg-dark text-light border-2 border-primary rounded' type="text" placeholder='Cari Anime | Contoh: One Piece ' />
                                 <div ref={hasil} className='flex flex-col max-h-[180px] gap-2 hide bg-dark w-full px-4 py-6 transition-all duration-300 ease-in-out overflow-y-auto shadow-2xl shadow-black/50 rounded scrollbar-hide'>
-                                    {dataPencarian.length > 0 ? (
-                                        dataPencarian.map(pencarian => (
-                                            <button onClick={() => tonton(pencarian._id)} key={pencarian._id} className='button w-full font-semibold text-xs lg:text-base'>{pencarian.title.substring(0, 35)}</button>
-                                        ))
-                                    ) : (<button className='button-disable w-full font-semibold'>Tidak ditemukan</button>)}
+                                    {
+                                        loadingSearch ? (
+                                            <LoadingSmall />
+                                        ) : (
+                                            dataPencarian.length > 0 ? (
+                                                dataPencarian.map(pencarian => (
+                                                    <button onClick={() => tonton(pencarian._id)} key={pencarian._id} className='button w-full font-semibold text-xs lg:text-base'>{pencarian.title.substring(0, 35)}</button>
+                                                ))
+                                            ) : (<button className='button-disable w-full font-semibold'>Anime tidak ditemukan</button>)
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -3,20 +3,22 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-* {
-    font-family: 'Poppins', sans-serif;
+
+.jost {
+    font-family: 'Jost', sans-serif;
 }
 
 /* scroll */
 /* width */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 6px;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    @apply bg-[#171717];
+    background-color: #38383f;
   }
    
   /* Handle */
@@ -60,4 +62,30 @@ a {
 
 .button-disable {
     @apply px-3 py-2 bg-dark text-primary rounded shadow-2xl hover:shadow-black/90 flex space-x-1 items-center  transition-all duration-300 ease-linear;
+}
+
+.y-loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side,#facc15 94%,#0000) top/5px 5px no-repeat,
+            conic-gradient(#0000 30%,#facc15);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
+    animation: spinner-c7wet2 1.2s infinite linear;
+}
+
+.y-loader-small {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side,#facc15 94%,#0000) top/3px 3px no-repeat,
+            conic-gradient(#0000 30%,#facc15);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+    animation: spinner-c7wet2 1.2s infinite linear;
+}
+
+@keyframes spinner-c7wet2 {
+   100% {
+      transform: rotate(1turn);
+   }
 }

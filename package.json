@@ -30,6 +30,10 @@
     "tailwind-scrollbar-hide": "^1.1.7",
     "uuid": "^8.3.2",
     "video-react": "^0.16.0",
+    "video.js": "^7.21.4",
+    "videojs-hotkeys": "^0.2.28",
+    "videojs-landscape-fullscreen": "^11.1111.0",
+    "videojs-seek-buttons": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

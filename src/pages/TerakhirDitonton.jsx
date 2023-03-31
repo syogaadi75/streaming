@@ -39,7 +39,7 @@ function TerakhirDitonton() {
     ))
 
     return (
-        <>
+        <div className='jost'>
             <Header />
             {dataHistory.episodes ? (
                 <div className='pt-24 text-light pb-8 min-h-screen'>
@@ -72,7 +72,7 @@ function TerakhirDitonton() {
                 </div>
             )}
 
-        </>
+        </div>
     )
 }
 

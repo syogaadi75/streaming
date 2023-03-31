@@ -25,7 +25,7 @@ function DetailAnime() {
 
 
     return (
-        <>
+        <div className='jost'>
             {film.film ? (
                 <div className='flex min-h-screen bg-dark text-light py-24 px-8 lg:py-28 lg:px-14 gap-8 flex-col lg:flex-row'>
                     <Header />
@@ -33,7 +33,7 @@ function DetailAnime() {
                         <div className='w-full flex justify-center'>
                             <img
                                 data-aos-once="false"
-                                data-aos="zoom-in-down"
+                                data-aos="zoom-in-right"
                                 data-aos-offset="200"
                                 data-aos-delay="0"
                                 data-aos-duration="1000"
@@ -47,7 +47,7 @@ function DetailAnime() {
                             data-aos-delay="200"
                             data-aos-duration="1000">
                             <h2 className='text-xl font-bold mb-4'>{film.film?.title}</h2>
-                            <p className='mb-6 text-gray-300 text-xs lg:text-sm'>{film.film?.synopsis}</p>
+                            <p className='mb-6 text-gray-300 text-xs lg:text-sm text-justify'>{film.film?.synopsis}</p>
                             <div className='flex flex-wrap gap-2 mb-10'>
                                 {film.film?.category.map((cat) => (
                                     <span key={cat} className='px-3 py-2 font-semibold bg-dark shadow-xl shadow-black/30 text-primary text-sm'>{cat}</span>
@@ -62,17 +62,20 @@ function DetailAnime() {
                     </div>
                     <div
                         data-aos-once="false"
-                        data-aos="fade-down"
+                        data-aos="fade-right"
                         data-aos-offset="200"
                         data-aos-delay="0"
                         data-aos-duration="800"
                         data-aos-easing="ease-in-out"
                         className='flex flex-col w-full lg:w-[600px]'>
-                        <h2 className='text-xl font-bold mb-4'>List Episode</h2>
-                        <div className='overflow-y-auto h-[300px] lg:h-[550px] xs:scrollbar-hide border-t-2 border-b-2 border-primary pt-2'>
+                        <h2 className='text-xl font-bold mb-4 border-b border-primary w-[150px] pb-2'>List Episode</h2>
+                        <div className='overflow-y-auto h-[300px] xs:scrollbar-hide pt-2'>
                             {film.episodes?.map(episode => (
-                                <button onClick={() => tonton(episode._id)} key={episode.no} className='px-3 py-2 bg-dark text-gray-300 rounded shadow-2xl hover:bg-primary hover:text-dark hover:shadow-black/90 flex space-x-1 items-center  transition-all duration-300 ease-linear w-full mb-2 group text-sm'>
-                                    {film.film?.title.substring(0, 40)} <span className='text-primary mx-2 group-hover:text-dark'>-</span> Episode {episode.no}
+                                <button onClick={() => tonton(episode._id)} key={episode.no} className='px-3 py-2 bg-dark text-gray-300 rounded shadow-2xl hover:bg-primary hover:text-dark hover:shadow-black/90 flex space-x-1 items-center transition-all duration-300 ease-linear w-full mb-2 group text-sm text-left'>
+                                    <span>
+                                        {film.film?.title.substring(0, 35)}
+                                    </span>
+                                    <div className='text-primary group-hover:text-dark text-xs font-semibold'> - {episode.no}</div>
                                 </button>
                             ))}
                         </div>
@@ -83,7 +86,7 @@ function DetailAnime() {
                     <Loading />
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

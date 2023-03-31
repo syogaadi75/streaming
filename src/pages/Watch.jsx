@@ -7,14 +7,14 @@ import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon, Bars3Icon, HomeIcon, XMar
 import Header from '../components/Header'
 import { saveHistory } from '../features/historySlice'
 import Loading from './Loading'
-import { Player, FullscreenToggle, ControlBar, Shortcut, BigPlayButton, ProgressControl, CurrentTimeDisplay, DurationDisplay, TimeDivider } from 'video-react';
-import 'video-react/dist/video-react.css'
+import VideoJS from '../lib/videojs/VideoJS'
 
 function Watch() {
     const apiUrl = useSelector(state => state.api.apiUrl)
-    const video = useRef(null)
+    const playerRef = useRef(null)
     const [data, setData] = useState([])
     const [firstLoad, setFirstLoad] = useState(true)
+    const [fileVideo, setFileVideo] = useState('')
     const [loading, setLoading] = useState(false)
     const [nextEpisode, setNextEpisode] = useState([])
     const [prevEpisode, setPrevEpisode] = useState([])
@@ -33,9 +33,9 @@ function Watch() {
         const fetchData = async () => {
             const getEpisode = await axios.get(apiUrl + '/episode/' + id)
 
+            setFileVideo(getEpisode.data.episode.video)
             setData(getEpisode.data)
             addHistory(getEpisode.data.episode._id)
-            await video.current?.load()
 
             const nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + 1}`)
             const prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
@@ -63,8 +63,9 @@ function Watch() {
 
     }, [id])
 
+
+
     const changeEps = async (eid) => {
-        video.current.pause()
         setFirstLoad(false)
         history('/watch/' + eid)
         setLoading(true)
@@ -90,7 +91,7 @@ function Watch() {
                                 data-aos-easing="ease-in-out"
                                 className='button text-base' onClick={() => history('/')}
                             >
-                                <HomeIcon className='w-5' /> <span>Kembali</span>
+                                <HomeIcon className='w-5 jost' /> <span>Kembali</span>
                             </button>
                             <span
                                 data-aos-once="false"
@@ -99,7 +100,7 @@ function Watch() {
                                 data-aos-delay="300"
                                 data-aos-duration="800"
                                 data-aos-easing="ease-in-out"
-                                className='text-base lg:text-lg'
+                                className='text-base lg:text-lg jost'
                             >
                                 {data.film.title.substring(0, 40)} - <span>Episode </span>
                                 {
@@ -114,30 +115,14 @@ function Watch() {
                             data-aos-delay="0"
                             data-aos-duration="800"
                             data-aos-easing="ease-in-out"
-                            className='mb-6 text-xs lg:text-base'
+                            className='mb-6 text-xs lg:text-base jost'
                         >
                             <span className='font-bold text-primary'>Penting!</span> Jika video tidak dapat diputar, silahkan gunakan <span className='font-bold text-primary'>CHROME</span> browser.
                         </div>
                         <div className='flex justify-center'>
-                            <Player
-                                ref={video}
-                            >
-                                <source src={data.episode.video} />
-                                <BigPlayButton className='big-play-button-hide' />
-                                <ControlBar>
-                                    {/* <PlayToggle /> */}
-                                    <CurrentTimeDisplay key="ctd" />
-                                    <DurationDisplay key="dd" />
-                                    <ProgressControl key="pc" />
-                                    <TimeDivider key="td" />
-                                    <FullscreenToggle key="fs" />
-                                </ControlBar>
-                            </Player>
-                            {/* <video ref={video} className='w-[500px] lg:w-[620px]' controls>
-                                <source src={data.episode.video} type="video/mp4" />
-                            </video> */}
+                            <VideoJS videoSource={fileVideo} />
                         </div>
-                        <div className='flex justify-between mt-4 text-xs lg:text-base mb-2'>
+                        <div className='flex justify-between mt-4 text-xs lg:text-base mb-2 jost'>
                             <div>
                                 {prevEpisode.error ? (
                                     <button className='button-disable'><XMarkIcon className='w-5' /> <span>Prev Eps</span> </button>
@@ -166,7 +151,7 @@ function Watch() {
                         </div>
                     </div>
                     <div
-                        className="mt-14 lg:mt-8 flex w-full lg:w-1/3 flex-col space-y-3"
+                        className="mt-14 lg:mt-8 flex w-full lg:w-1/3 flex-col space-y-3 jost"
                     >
                         <h1 className='text-lg lg:text-xl font-bold text-primary cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>{data.film.title}</h1>
                         <div className='flex flex-row space-x-6 cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>

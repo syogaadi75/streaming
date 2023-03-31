@@ -43,7 +43,7 @@ function JadwalTayang() {
 
 
     return (
-        <>
+        <div className='jost'>
             <Header />
             {loading ? (
                 <div className='w-full h-screen flex justify-center items-center text-lg text-light flex-col gap-2'>
@@ -168,7 +168,7 @@ function JadwalTayang() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

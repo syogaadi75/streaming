@@ -7,7 +7,7 @@
 }
 
 .paginationContainer {
-    @apply flex space-x-3 items-center justify-center w-full overflow-hidden text-light text-xs lg:text-sm lg:space-x-5;
+    @apply flex space-x-1 items-center justify-center w-full overflow-hidden text-light text-xs lg:text-sm lg:space-x-5;
 }
 
 .paginationContainer a {
@@ -15,11 +15,11 @@
 }
 
 .pagination-button {
-    @apply py-2 px-3 flex space-x-1 lg:space-x-2 bg-primary text-dark transition-all duration-300 ease-linear rounded items-center;
+    @apply py-2 px-2 flex space-x-1 lg:space-x-2 bg-primary text-dark transition-all duration-300 ease-linear rounded items-center;
 }
 
 .paginationActive {
-    @apply p-2 rounded bg-primary text-dark;
+    @apply py-2 px-[.5px] rounded bg-primary text-dark;
 }
 
 .paginationDisable {
