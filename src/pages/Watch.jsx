@@ -83,23 +83,11 @@ function Watch() {
                     <div className='mt-14 lg:mt-8'>
                         <h1 className='mb-4 flex flex-col items-start lg:flex-row lg:items-center gap-4'>
                             <button
-                                data-aos-once="false"
-                                data-aos="fade-right"
-                                data-aos-offset="200"
-                                data-aos-delay="0"
-                                data-aos-duration="500"
-                                data-aos-easing="ease-in-out"
                                 className='button text-base' onClick={() => history('/')}
                             >
                                 <HomeIcon className='w-5 jost' /> <span>Kembali</span>
                             </button>
                             <span
-                                data-aos-once="false"
-                                data-aos="fade-right"
-                                data-aos-offset="200"
-                                data-aos-delay="300"
-                                data-aos-duration="800"
-                                data-aos-easing="ease-in-out"
                                 className='text-base lg:text-lg jost'
                             >
                                 {data.film.title.substring(0, 40)} - <span>Episode </span>
@@ -108,17 +96,6 @@ function Watch() {
                                 }
                             </span>
                         </h1>
-                        <div
-                            data-aos-once="false"
-                            data-aos="fade-right"
-                            data-aos-offset="200"
-                            data-aos-delay="0"
-                            data-aos-duration="800"
-                            data-aos-easing="ease-in-out"
-                            className='mb-6 text-xs lg:text-base jost'
-                        >
-                            <span className='font-bold text-primary'>Penting!</span> Jika video tidak dapat diputar, silahkan gunakan <span className='font-bold text-primary'>CHROME</span> browser.
-                        </div>
                         <div className='flex justify-center'>
                             <VideoJS videoSource={fileVideo} />
                         </div>
@@ -155,7 +132,13 @@ function Watch() {
                     >
                         <h1 className='text-lg lg:text-xl font-bold text-primary cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>{data.film.title}</h1>
                         <div className='flex flex-row space-x-6 cursor-pointer' onClick={() => history('/detail-anime/' + data.film._id)}>
-                            <img className='w-32 lg:w-44 h-32 lg:h-44' src={data.film.poster} alt="Cover" />
+                            <div className='relative w-[500px] lg:w-[700px]'>
+                                <div className='w-full h-[40px] absolute top-[-1px] bg-merges-top'></div>
+                                <div className='w-full h-[40px] absolute bottom-[-1px] bg-merges-bottom'></div>
+                                <div className='h-full w-[20px] absolute right-[-1px] bg-merges-right'></div>
+                                <div className='h-full w-[20px] absolute left-[-1px] bg-merges-left'></div>
+                                <img className='w-32 lg:w-44 h-32 lg:h-44' src={data.film.poster} alt="Cover" />
+                            </div>
                             <p className='text-xs lg:text-sm leading-tight text-gray-300'>
                                 {`${data.film.synopsis.substring(0, 220)}...`}
                             </p>

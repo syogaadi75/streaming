@@ -134,18 +134,14 @@ function Welcome() {
                     </div>
                 </div>
                 <div
-                    className='flex overflow-hidden' data-aos-once="false"
-                    data-aos="fade-right"
-                    data-aos-offset="200"
-                    data-aos-delay="500"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
+                    className='flex overflow-hidden relative' data-aos-once="false"
                 >
                     <div className='cover order-2 lg:order-1 z-10 bg-cover-op bg-cover'></div>
                     <div className='cover order-1 lg:order-2 z-10 bg-cover-spyfamily bg-cover'></div>
                     <div className='cover order-3 lg:order-3 z-0 bg-cover-bcl bg-cover'></div>
                     <div className='cover order-5 lg:order-4 z-10 bg-cover-yourname bg-cover'></div>
                     <div className='cover order-4 lg:order-5 z-10 bg-cover-naruto bg-cover'></div>
+                    <div className='w-full h-[100px] lg:h-[150px] absolute bottom-[-10px] bg-merges-bottom z-10'></div>
                 </div>
             </div>
         </>

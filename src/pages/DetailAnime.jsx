@@ -30,23 +30,15 @@ function DetailAnime() {
                 <div className='flex min-h-screen bg-dark text-light py-24 px-8 lg:py-28 lg:px-14 gap-8 flex-col lg:flex-row'>
                     <Header />
                     <div className='flex items-start gap-8 flex-col lg:flex-row w-full'>
-                        <div className='w-full flex justify-center'>
-                            <img
-                                data-aos-once="false"
-                                data-aos="zoom-in-right"
-                                data-aos-offset="200"
-                                data-aos-delay="0"
-                                data-aos-duration="1000"
-                                data-aos-easing="ease-in-out"
-                                className='w-[200px] lg:w-[300px] max-w-[200px] lg:max-w-[300px]' src={film.film?.poster} alt="Poster" />
+                        <div className='w-full flex justify-center relative'>
+                            <div className='w-full h-[80px] absolute top-[-1px] bg-merges-top'></div>
+                            <div className='w-full h-[80px] absolute bottom-[-1px] bg-merges-bottom'></div>
+                            <div className='h-full w-[120px] lg:w-[50px] absolute right-[-1px] bg-merges-right'></div>
+                            <div className='h-full w-[120px] lg:w-[50px] absolute left-[-1px] bg-merges-left'></div>
+                            <img className='w-[200px] lg:w-[300px] max-w-[200px] lg:max-w-[300px]' src={film.film?.poster} alt="Poster" />
                         </div>
-                        <div
-                            data-aos-once="false"
-                            data-aos="fade-right"
-                            data-aos-offset="200"
-                            data-aos-delay="200"
-                            data-aos-duration="1000">
-                            <h2 className='text-xl font-bold mb-4'>{film.film?.title}</h2>
+                        <div>
+                            <h2 className='text-xl font-bold mb-4 text-primary text-center lg:text-left'>{film.film?.title}</h2>
                             <p className='mb-6 text-gray-300 text-xs lg:text-sm text-justify'>{film.film?.synopsis}</p>
                             <div className='flex flex-wrap gap-2 mb-10'>
                                 {film.film?.category.map((cat) => (
@@ -61,12 +53,6 @@ function DetailAnime() {
                         </div>
                     </div>
                     <div
-                        data-aos-once="false"
-                        data-aos="fade-right"
-                        data-aos-offset="200"
-                        data-aos-delay="0"
-                        data-aos-duration="800"
-                        data-aos-easing="ease-in-out"
                         className='flex flex-col w-full lg:w-[600px]'>
                         <h2 className='text-xl font-bold mb-4 border-b border-primary w-[150px] pb-2'>List Episode</h2>
                         <div className='overflow-y-auto h-[300px] xs:scrollbar-hide pt-2'>

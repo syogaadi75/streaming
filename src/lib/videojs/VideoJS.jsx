@@ -1,12 +1,13 @@
-import { useEffect, useRef } from 'react';
-import videojs from 'video.js';
-import 'video.js/dist/video-js.css';
-import 'videojs-landscape-fullscreen';
-import 'videojs-seek-buttons';
-import 'videojs-seek-buttons/dist/videojs-seek-buttons.css';
-import "videojs-hotkeys";
+import { useEffect, useRef } from 'react'
+import videojs from 'video.js'
+import 'video.js/dist/video-js.css'
+import 'videojs-landscape-fullscreen'
+import 'videojs-seek-buttons'
+import 'videojs-seek-buttons/dist/videojs-seek-buttons.css'
+import "videojs-hotkeys"
 import './videojs.css'
-import { useState } from 'react';
+import { useState } from 'react'
+import videoPoster from '../../img/video-poster.png'
 
 function VideoJS({ videoSource }) {
   const videoRef = useRef(null);
@@ -27,6 +28,14 @@ function VideoJS({ videoSource }) {
         enableModifiersForNumbers: false,
         volumeStep: 0.1,
         seekStep: 10,
+      },
+      landscapeFullscreen: {
+        fullscreen: {
+          enterOnRotate: true,
+          exitOnRotate: true,
+          alwaysInLandscapeMode: true,
+          iOS: true
+        }
       }
     },
     userActions: {
@@ -39,22 +48,24 @@ function VideoJS({ videoSource }) {
   });
 
   useEffect(() => {
-    const handleOrientationChange = () => {
-      if (window.screen.orientation.type.includes('landscape')) {
-        playerRef.current.video.videoWidth = window.screen.width;
-        playerRef.current.video.videoHeight = window.screen.height;
-      } else {
-        playerRef.current.video.videoWidth = playerRef.current.video.videoWidth;
-        playerRef.current.video.videoHeight = playerRef.current.video.videoHeight;
-      }
-    };
+    if (playerRef) {
+      const handleOrientationChange = () => {
+        if (window.screen.orientation.type.includes('landscape')) {
+          playerRef.current.video.videoWidth = window.screen.width;
+          playerRef.current.video.videoHeight = window.screen.height;
+        } else {
+          playerRef.current.video.videoWidth = playerRef.current.video.videoWidth;
+          playerRef.current.video.videoHeight = playerRef.current.video.videoHeight;
+        }
+      };
 
-    window.screen.orientation.addEventListener('change', handleOrientationChange);
+      window.screen.orientation.addEventListener('change', handleOrientationChange);
 
-    return () => {
-      window.screen.orientation.removeEventListener('change', handleOrientationChange);
-    };
-  }, []);
+      return () => {
+        window.screen.orientation.removeEventListener('change', handleOrientationChange);
+      };
+    }
+  }, [playerRef]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleFullscreenShortcut); // Add event listener for fullscreen keyboard shortcut 
@@ -74,19 +85,9 @@ function VideoJS({ videoSource }) {
         back: 10
       })
 
-      player.landscapeFullscreen({
-        fullscreen: {
-          enterOnRotate: true,
-          exitOnRotate: true,
-          alwaysInLandscapeMode: true,
-          iOS: true
-        }
-      })
-
       // You could update an existing player in the `else` block here
       // on prop change, for example:
     } else {
-      console.log(videoSource)
       const player = playerRef.current;
       player.src(videoSource)
       player.preload('auto');
@@ -135,7 +136,7 @@ function VideoJS({ videoSource }) {
   return (
     <>
       <div data-vjs-player>
-        <video ref={videoRef} className='video-js vjs-big-play-centered w-[500px] lg:w-[620px] h-[180px] lg:h-[350px]' />
+        <video ref={videoRef} className='video-js vjs-big-play-centered w-[500px] lg:w-[620px] h-[180px] lg:h-[350px]' data-setup={`{"poster":"${videoPoster}"}`} />
       </div>
     </>
   )
