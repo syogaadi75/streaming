@@ -100,7 +100,7 @@ function Watch() {
                                 </span>
                             </span>
                         </h1>
-                        <div className="flex justify-end gap-2 mb-2">
+                        <div className="flex gap-2 mb-2">
                             <button className={`button-disable ${activeServer == 1 ? 'border-b' : 'border-b-0'} border-primary`} onClick={() => changeServer(1)}>
                                 Server 1
                             </button>
