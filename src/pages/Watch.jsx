@@ -8,13 +8,16 @@ import Header from '../components/Header'
 import { saveHistory } from '../features/historySlice'
 import Loading from './Loading'
 import VideoJS from '../lib/videojs/VideoJS'
+import BVideo from '../lib/bvideo/BVideo'
 
 function Watch() {
     const apiUrl = useSelector(state => state.api.apiUrl)
     const playerRef = useRef(null)
     const [data, setData] = useState([])
+    const [activeServer, setActiveServer] = useState(1)
     const [firstLoad, setFirstLoad] = useState(true)
     const [fileVideo, setFileVideo] = useState('')
+    const [fileVideo2, setFileVideo2] = useState('')
     const [loading, setLoading] = useState(false)
     const [nextEpisode, setNextEpisode] = useState([])
     const [prevEpisode, setPrevEpisode] = useState([])
@@ -34,6 +37,7 @@ function Watch() {
             const getEpisode = await axios.get(apiUrl + '/episode/' + id)
 
             setFileVideo(getEpisode.data.episode.video)
+            if (getEpisode.data.episode.bvideo) setFileVideo2(getEpisode.data.episode.bvideo)
             setData(getEpisode.data)
             addHistory(getEpisode.data.episode._id)
 
@@ -71,6 +75,10 @@ function Watch() {
         setLoading(true)
     }
 
+    const changeServer = async (server) => {
+        setActiveServer(server)
+    }
+
     return (
         <>
             <Header />
@@ -82,22 +90,33 @@ function Watch() {
                 <div className='text-light w-full flex space-y-8 lg:space-x-8 p-8 lg:p-16 flex-col lg:flex-row min-h-screen'>
                     <div className='mt-14 lg:mt-8'>
                         <h1 className='mb-4 flex flex-col items-start lg:flex-row lg:items-center gap-4'>
-                            <button
-                                className='button text-base' onClick={() => history('/')}
-                            >
-                                <HomeIcon className='w-5 jost' /> <span>Kembali</span>
-                            </button>
                             <span
                                 className='text-base lg:text-lg jost'
                             >
-                                {data.film.title.substring(0, 40)} - <span>Episode </span>
-                                {
-                                    nextEpisode.doubleEps ? data.episode.no + " & " + parseInt(data.episode.no + 1) : data.episode.no
-                                }
+                                {data.film.title.substring(0, 40)} - <span className='text-primary'>
+                                    Episode {
+                                        nextEpisode.doubleEps ? data.episode.no + " & " + parseInt(data.episode.no + 1) : data.episode.no
+                                    }
+                                </span>
                             </span>
                         </h1>
+                        <div className="flex justify-end gap-2 mb-2">
+                            <button className={`button-disable ${activeServer == 1 ? 'border-b' : 'border-b-0'} border-primary`} onClick={() => changeServer(1)}>
+                                Server 1
+                            </button>
+                            {fileVideo2 ? (
+
+                                <button className={`button-disable ${activeServer == 2 ? 'border-b' : 'border-b-0'} border-primary`} onClick={() => changeServer(2)}>
+                                    Server 2
+                                </button>
+                            ) : ''}
+                        </div>
                         <div className='flex justify-center'>
-                            <VideoJS videoSource={fileVideo} />
+                            {activeServer == 1 ? (
+                                <VideoJS videoSource={fileVideo} />
+                            ) : activeServer == 2 ? (
+                                <BVideo videoSource={fileVideo2} />
+                            ) : 'Not Found'}
                         </div>
                         <div className='flex justify-between mt-4 text-xs lg:text-base mb-2 jost'>
                             <div>

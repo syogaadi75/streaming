@@ -81,7 +81,7 @@ a {
 }
 
 .button-disable {
-    @apply px-3 py-2 bg-dark text-primary rounded shadow-2xl hover:shadow-black/90 flex space-x-1 items-center  transition-all duration-300 ease-linear;
+    @apply px-3 py-2 bg-dark text-primary rounded shadow-xl hover:shadow-black/50 flex space-x-1 items-center  transition-all duration-300 ease-linear;
 }
 
 .y-loader {
