@@ -37,6 +37,11 @@ function Watch() {
             const getEpisode = await axios.get(apiUrl + '/episode/' + id)
 
             setFileVideo(getEpisode.data.episode.video)
+
+            if (!getEpisode.data.episode.video) {
+                if (getEpisode.data.episode.bvideo) setActiveServer(2)
+            }
+
             if (getEpisode.data.episode.bvideo) {
                 setFileVideo2(getEpisode.data.episode.bvideo)
             } else {
