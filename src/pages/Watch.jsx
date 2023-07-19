@@ -51,8 +51,8 @@ function Watch() {
             setData(getEpisode.data)
             addHistory(getEpisode.data.episode._id)
 
-            var nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + 1}`)
-            var prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
+            var nextEpisode = null
+            var prevEpisode = null
 
             if (getEpisode.data.film._id == '6338f164077ba66d3fcf96d3') {
                 nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${parseFloat(getEpisode.data.episode.no) + 0.5}`)
