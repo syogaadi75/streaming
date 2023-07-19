@@ -54,10 +54,10 @@ function Watch() {
             var nextEpisode = null
             var prevEpisode = null
 
-            if (getEpisode.data.film._id == '6338f164077ba66d3fcf96d3') {
+            if (id == '6338f164077ba66d3fcf96d3') {
                 nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${parseFloat(getEpisode.data.episode.no) + .5}`)
                 prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
-            } else if (getEpisode.data.film._id == '6338f171077ba66d3fcf96d7') {
+            } else if (id == '6338f171077ba66d3fcf96d7') {
                 nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${parseFloat(getEpisode.data.episode.no) + .5}`)
                 prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${parseFloat(getEpisode.data.episode.no) - .5}`)
             } else {
