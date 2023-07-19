@@ -44,6 +44,7 @@ function Watch() {
 
             if (getEpisode.data.episode.bvideo) {
                 setFileVideo2(getEpisode.data.episode.bvideo)
+                setActiveServer(2)
             } else {
                 setFileVideo2('')
                 setActiveServer(1)
