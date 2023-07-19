@@ -51,8 +51,19 @@ function Watch() {
             setData(getEpisode.data)
             addHistory(getEpisode.data.episode._id)
 
-            const nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + 1}`)
-            const prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
+            var nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + 1}`)
+            var prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
+
+            if (getEpisode.data.film._id == '6338f164077ba66d3fcf96d3') {
+                nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + .5}`)
+                prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
+            } else if (getEpisode.data.film._id == '6338f171077ba66d3fcf96d7') {
+                nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + .5}`)
+                prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no - .5}`)
+            } else {
+                nextEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + 1}`)
+                prevEpisode = await axios.get(`${apiUrl}/episode/cariNo/${getEpisode.data.film._id}/${getEpisode.data.episode.no + -1}`)
+            }
 
             setNextEpisode(nextEpisode.data)
             setPrevEpisode(prevEpisode.data)
@@ -110,6 +121,9 @@ function Watch() {
                                 </span>
                             </span>
                         </h1>
+                        <div className='text-sm text-semibold text-gray-300'>
+                            *Gunakan server 2 jika server 1 tidak dapat diputar.
+                        </div>
                         <div className="flex gap-2 mb-2">
                             <button className={`button-disable ${activeServer == 1 ? 'border-b' : 'border-b-0'} border-primary`} onClick={() => changeServer(1)}>
                                 Server 1
